@@ -1,6 +1,6 @@
 import cv2
 import numpy as np
-
+import os
 
 def resize_image_percent(url_image_src, url_image_trg, percent=0.75):
     """
@@ -21,6 +21,35 @@ def resize_image_percent(url_image_src, url_image_trg, percent=0.75):
     cv2.imwrite(f'{url_image_trg}_resized.jpg', img_per)
 
     return img_per, img.shape[1], img.shape[0]
+
+
+def resize_image_percent_til_size(url_image_src, url_image_trg, nested_size=6291456): # 6MB
+    """
+    Resizes an image by a percentual ratio until reaches max_size.
+
+    Args:
+        url_image_src (str): The URL of the input image file.
+        url_image_trg (str): The URL of the output image file.
+        nested_size (int, optional): Size in bytes
+
+    Returns:
+        img_per (numpy.ndarray): The resized image as a numpy array.
+        original_width (int): The width of the original image.
+        original_height (int): The height of the original image
+    """
+    img = cv2.imread(url_image_src)
+    reached = False
+    percent = 0.9
+    img_per = None
+    while not reached:
+        img_per = cv2.resize(img, None, fx=percent, fy=percent)
+        percent -= 0.05
+        cv2.imwrite(f'{url_image_trg}_resized.jpg', img_per)
+        if os.path.getsize(f'{url_image_trg}_resized.jpg') <= nested_size:
+            reached = True
+
+    cv2.imwrite(f'{url_image_trg}_resized.jpg', img_per)
+    return img_per, img.shape[1], img.shape[0], percent
 
 
 def reduce_image_resolution(url_image_src, url_image_trg, quality=30):

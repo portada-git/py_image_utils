@@ -1,4 +1,5 @@
-from utils.image_utilities_cv import resize_image_percent, reduce_image_resolution, rescale_mask
+from utils.image_utilities_cv import resize_image_percent, reduce_image_resolution, rescale_mask, \
+    resize_image_percent_til_size
 import numpy as np
 
 IMG_SRC = 'C:\\Users\\VLIR-Toledano\\Desktop\\dataimg\\1850_01_01_HAB_DM_00000_U_1_0.jpg'
@@ -25,7 +26,8 @@ def simulate_layout_mask(height, width, num_blocks=5):
 
 # testing methods
 if __name__ == "__main__":
-    img_low, original_width, original_height = resize_image_percent(IMG_SRC, IMG_DEST, percent=0.20)
+    img_low, original_width, original_height, percent = resize_image_percent_til_size(IMG_SRC, IMG_DEST)
+    print("Optimal percent: ", percent)
 
     # makes inference via arcanum, in this we simulate layout mask
     mask_simulated = simulate_layout_mask(img_low.shape[1], img_low.shape[0])
