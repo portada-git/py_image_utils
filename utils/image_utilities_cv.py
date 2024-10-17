@@ -42,10 +42,10 @@ def resize_image_percent_til_size(image_src, url_image_trg, nested_size=6291456)
     percent = nested_size / size_in_bytes
     if size_in_bytes > nested_size:
         img_per = cv2.resize(image_src, None, fx=percent, fy=percent)
-        cv2.imwrite(f'{url_image_trg}_resized.jpg', img_per)
-        return img_per, img.shape[1], img.shape[0], percent # Returns the original 2-D dimensions
+        # cv2.imwrite(f'{url_image_trg}_resized.jpg', img_per)
+        return img_per, image_src.shape[1], image_src.shape[0], percent # Returns the original 2-D dimensions
 
-    return image_src, img.shape[1], img.shape[0], 1 # Image without changes
+    return image_src, image_src.shape[1], image_src.shape[0], 1 # Image without changes
 
 
 def reduce_image_resolution(url_image_src, url_image_trg, quality=30):
