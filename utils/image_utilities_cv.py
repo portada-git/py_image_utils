@@ -151,8 +151,8 @@ def convert_ordered_block_stack_to_cv2(image: np.ndarray, blocks: list[dict]):
 
         # Append the cut block to the list and transform into image cv2
         cut_blocks.append(cut_block)
-        image_block = cv2.cvtColor(cut_block, cv2.COLOR_GRAY2BGR)
-        image_cv2 = cv2.imdecode(image_block.astype(np.uint8), cv2.IMREAD_GRAYSCALE)
+        image_block = cv2.cvtColor(cut_block, cv2.COLOR_RGB2BGR)
+        image_cv2 = cv2.imdecode(image_block.astype(np.uint8), cv2.IMREAD_COLOR)
         cut_blocks_cv2.append(image_cv2)
 
     return cut_blocks_cv2
