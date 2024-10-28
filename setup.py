@@ -1,13 +1,13 @@
 from setuptools import setup
 
 setup(name='py_image_utils',
-    version='0.0.7',
-    description='image py_portada_image_utils for PortADa project',
+    version='0.0.8',
+    description='image py_image_utils for PortADa project',
     author='PortADa team',
     author_email='jcbportada@gmail.com',
     license='MIT',
     url="https://github.com/portada-git/py_image_utils",
-    packages=['py_portada_image_utils'],
+    packages=['py_image_utils'],
     py_modules=['image_utilities_cv'],
     install_requires=[
 	'opencv-python',
