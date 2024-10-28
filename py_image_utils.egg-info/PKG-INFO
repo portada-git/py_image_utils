@@ -1,12 +1,9 @@
 Metadata-Version: 2.1
-Name: py_image_utils
-Version: 0.0.6
+Name: py-image-utils
+Version: 0.0.7
 Summary: image py_portada_image_utils for PortADa project
 Home-page: https://github.com/portada-git/py_image_utils
 Author: PortADa team
 Author-email: jcbportada@gmail.com
 License: MIT
 Requires-Python: >=3.9
-Requires-Dist: opencv-python
-Requires-Dist: matplotlib
-Requires-Dist: numpy
