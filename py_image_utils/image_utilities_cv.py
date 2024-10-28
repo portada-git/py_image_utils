@@ -55,7 +55,7 @@ def resize_image_percent(url_image_src, url_image_trg, percent=0.75):
 
 #
 # def resize_image_percent_til_size(image_src, url_image_trg, nested_size=6291456): # 6MB  JCB NOTE-IMPORTANT: the second parameter is unnecessary!
-def resize_image_percent_til_size(image_src, nested_size=6291456)
+def resize_image_percent_til_size(image_src, nested_size=6291456):
     """
     Resizes an image by a percentual ratio until reaches max_size.
 
