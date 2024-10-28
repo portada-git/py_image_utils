@@ -1,2 +1,2 @@
 image_utilities_cv
-py_portada_image_utils
+py_image_utils

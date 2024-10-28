@@ -1,7 +1,7 @@
 from setuptools import setup
 
 setup(name='py_image_utils',
-    version='0.0.8',
+    version='0.0.9',
     description='image py_image_utils for PortADa project',
     author='PortADa team',
     author_email='jcbportada@gmail.com',

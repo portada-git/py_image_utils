@@ -53,7 +53,9 @@ def resize_image_percent(url_image_src, url_image_trg, percent=0.75):
     return img_per, img.shape[1], img.shape[0]
 
 
-def resize_image_percent_til_size(image_src, url_image_trg, nested_size=6291456): # 6MB
+#
+# def resize_image_percent_til_size(image_src, url_image_trg, nested_size=6291456): # 6MB  JCB NOTE-IMPORTANT: the second parameter is unnecessary!
+def resize_image_percent_til_size(image_src, nested_size=6291456)
     """
     Resizes an image by a percentual ratio until reaches max_size.
 
@@ -130,10 +132,12 @@ def convert_ordered_block_stack_to_cv2(image: np.ndarray, blocks: list[dict]):
     """
 
     img_height, img_width, _ = image.shape
+# JCB NOTE - IMPORTANT: The image arrives in CV2 format. It is not necessary to convert it. Or if you want,
+    # before converting it, you should check if the format is PIL or CV2.
 
     cut_blocks = []
-    max_width = 0
-    cut_blocks_cv2 = []
+#    max_width = 0   JCB NOTE: it's not necessary
+#    cut_blocks_cv2 = []  JCB NOTE-IMPORTANT: if it's not necessary to convert image, you can use the existing array named cut_blocks
 
     for block in blocks:
         x1, y1, w, h = get_block_coordinates(block, img_width, img_height)
@@ -145,14 +149,17 @@ def convert_ordered_block_stack_to_cv2(image: np.ndarray, blocks: list[dict]):
         # Cut the text block region from the image
         cut_block = image[y1:y2, x1:x2]
 
-        # Track the maximum width of the blocks
-        if cut_block.shape[1] > max_width:
-            max_width = cut_block.shape[1]
+# JCB NOTE: max_width does not any function here, please delete
+        # # Track the maximum width of the blocks
+        # if cut_block.shape[1] > max_width:
+        #     max_width = cut_block.shape[1]
 
         # Append the cut block to the list and transform into image cv2
         cut_blocks.append(cut_block)
-        image_block = cv2.cvtColor(cut_block, cv2.COLOR_RGB2BGR)
-        image_cv2 = cv2.imdecode(image_block.astype(np.uint8), cv2.IMREAD_COLOR)
-        cut_blocks_cv2.append(image_cv2)
+#    JCB NOTE - IMPORTANT:  if it's not necessary to convert image, next three lines must be removed
+#        image_block = cv2.cvtColor(cut_block, cv2.COLOR_RGB2BGR)
+#        image_cv2 = cv2.imdecode(image_block.astype(np.uint8), cv2.IMREAD_COLOR)
+#        cut_blocks_cv2.append(image_cv2)
 
-    return cut_blocks_cv2
+#    return cut_blocks_cv2
+    return cut_blocks
