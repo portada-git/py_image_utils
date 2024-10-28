@@ -54,9 +54,10 @@ def resize_image_percent(url_image_src, url_image_trg, percent=0.75):
     return img_per, img.shape[1], img.shape[0]
 
 
-# JCB NOTE-IMPORTANT: the second parameter (url_image_trg) is unnecessary! The documentation must be changed
+# JCB NOTE-IMPORTANT: the second parameter (url_image_trg) is unnecessary! I've added the parameter ext to indicate
+# the file format. The documentation must be changed
 # def resize_image_percent_til_size(image_src, url_image_trg, nested_size=6291456): # 6MB
-def resize_image_percent_til_size(image_src, nested_size=6291456):  # 6MB
+def resize_image_percent_til_size(image_src, nested_size=6291456, ext=".jpg"):  # 6MB
     """
     Resizes an image by a percentual ratio until reaches max_size.
 
@@ -71,7 +72,7 @@ def resize_image_percent_til_size(image_src, nested_size=6291456):  # 6MB
         original_height (int): The height of the original image
     """
 
-    size_in_bytes = cv2.imencode(".jpg", image_src)[1].size
+    size_in_bytes = cv2.imencode(ext, image_src)[1].size
     percent = nested_size / size_in_bytes
     if size_in_bytes > nested_size:
         img_per = cv2.resize(image_src, None, fx=percent, fy=percent)
